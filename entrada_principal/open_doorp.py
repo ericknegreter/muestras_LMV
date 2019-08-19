@@ -49,7 +49,7 @@ while True:
         if estado == 0:
             #os.system('gpio -g mode 22 out')
             GPIO.output(22, True)
-            time.sleep(15)
+            time.sleep(3)
             sql2 = "UPDATE r_muestras SET estado = 1 WHERE dispositivo='puerta'"
             mycursor.execute(sql2)
             mydb.commit()

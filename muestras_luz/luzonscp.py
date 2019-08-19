@@ -7,7 +7,7 @@ import sys
 #Active GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(26, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
 
 hosts = ('google.com', 'kernel.org', 'yahoo.com')
 localhost = ('10.0.5.246')
@@ -50,8 +50,8 @@ while True:
 
         if i == '1':
             if estado == 0:
-                GPIO.output(26, False)
-                ('si prendio')
+                GPIO.output(19, False)
+                print('si prendio')
                 #Update record in the table r_muestras of LMV databases
                 #r_muestras/ Update the register of the r_muestras table
                 sql = "UPDATE r_muestras SET estado = 1 WHERE dispositivo='luz'"
@@ -61,8 +61,8 @@ while True:
                 #END of mysql
         elif i == '0':
             if estado == 1:
-                ('no pendrio')
-                GPIO.output(26, True)
+                print('no pendrio')
+                GPIO.output(19, True)
                 #Update the record of the r_muestras table in LMV databases
                 sql = "UPDATE r_muestras SET estado = 0 WHERE dispositivo='luz'"
                 mycursor.execute(sql)

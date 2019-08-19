@@ -75,8 +75,8 @@ if __name__ == '__main__':
         while True:
             dist = distance()
             print("Measured Distance = %.1f cm" % dist)
-            time.sleep(1)
-            if(dist >= 33 and dist <= 38):
+            #time.sleep(5)
+            if(dist >= 35 and dist <= 38):
                 if(estado != 0):
                     while True:
                         if(net_is_up() == 0):
@@ -92,8 +92,8 @@ if __name__ == '__main__':
                             #END of mysql
                             estado = 0
                             break
-                #Led Start
-                GPIO.output(25, False)
+                    #Led Start
+                    GPIO.output(25, False)
             else:
                 if(estado != 1):
                     while True:
@@ -112,6 +112,7 @@ if __name__ == '__main__':
                             break
                     #Led End
                     GPIO.output(25, True)
+            time.sleep(5)
 
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
