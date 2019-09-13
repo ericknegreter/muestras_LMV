@@ -75,7 +75,6 @@ if __name__ == '__main__':
         while True:
             dist = distance()
             print("Measured Distance = %.1f cm" % dist)
-            #time.sleep(5)
             if(dist >= 35 and dist <= 38):
                 if(estado != 0):
                     while True:

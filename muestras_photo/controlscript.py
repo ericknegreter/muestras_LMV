@@ -133,7 +133,7 @@ def listen_welcome():
                 except UnicodeDecodeError:
                     return False, ""
             return False, ""
-            break;
+            break
 
 while True:
     try:
