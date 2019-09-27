@@ -53,17 +53,22 @@ def net_is_up():
     return xstatus
 
 def get_name(Name):
-    reader = csv.reader(open("nombres.csv", "rt"), delimiter=",")
-    x=list(reader)
+    try:
+        reader = csv.reader(open("nombres.csv", "rt"), delimiter=",")
+        x=list(reader)
 
-    Name2=Name[1]
-    Name2=Name2.upper()
+        Name2=Name[1]
+        Name2=Name2.upper()
 
-    for item in x:
-        if str(Name2) == item[0]:
-            return Name[0], Name2, True
-            break
-    return Name[0], "", False
+        for item in x:
+            if str(Name2) == item[0]:
+                return Name[0], Name2, True
+                break
+        return Name[0], "", False
+    except:
+        print("Exception no controlada en funcion get_name")
+    finally:
+        return Name[0], "", False
 
 def store(path, name, person):
     while True:
@@ -79,19 +84,24 @@ def store(path, name, person):
             break
 
 def take_photo(name):
-    script_dir = os.path.dirname(__file__)
-    direc = os.path.dirname(os.path.abspath(__file__))
-    os.system('./webcam.sh')
-    currentdate = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
-    real_path = currentdate +".jpg"
-    abs_file_path = os.path.join(script_dir, real_path)
-    GPIO.output(21, False)
-    GPIO.output(16, True)
-    time.sleep(2)
-    store(direc, abs_file_path, name)
-    GPIO.output(16, False)
-    time.sleep(2)
-    return False
+    try:
+        script_dir = os.path.dirname(__file__)
+        direc = os.path.dirname(os.path.abspath(__file__))
+        os.system('./webcam.sh')
+        currentdate = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
+        real_path = currentdate +".jpg"
+        abs_file_path = os.path.join(script_dir, real_path)
+        GPIO.output(21, False)
+        GPIO.output(16, True)
+        time.sleep(2)
+        store(direc, abs_file_path, name)
+        GPIO.output(16, False)
+        time.sleep(2)
+        return False
+    except:
+        print("Excepcion con controlada en funcion take_photo")
+    finally:
+        return True
 
 def listen_welcome():
     r = sr.Recognizer()
