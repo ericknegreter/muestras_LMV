@@ -22,7 +22,7 @@ echo "Instalacion de librerias Python3"
 sudo -H pip3 install SpeechRecognition
 sudo -H pip3 install unidecode
 sudo -H pip3 install paramiko
-sudo -H pip3 install cryptography==2.4.2
+sudo -H pip3 install cryptography
 sudo -H pip3 install mysql-connector-python
 sudo -H pip3 install pyaudio
 echo "Instalacion de scripts"
