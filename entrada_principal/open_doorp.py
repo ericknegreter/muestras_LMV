@@ -37,33 +37,36 @@ def net_is_up():
 
 while True:
     if(net_is_up() == 0):
-        #Connection to database LMV and update record in e_extraccion table with mysql
-        mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
-        mycursor = mydb.cursor()
-        sql = "SELECT estado FROM e_extraccion WHERE dispositivo='puerta'"
-        mycursor.execute(sql)
-        records = mycursor.fetchall()
-        print(mycursor.rowcount, "record selected.")
-        for row in records:
-            estado = int(row[0])
-        if estado == 0:
-            #os.system('gpio -g mode 22 out')
-            GPIO.output(22, True)
-            time.sleep(3)
-            sql2 = "UPDATE r_muestras SET estado = 1 WHERE dispositivo='puerta'"
-            mycursor.execute(sql2)
-            mydb.commit()
-            print(mycursor.rowcount, "record affected.")
-            GPIO.output(22, False)
-            sql2 = "UPDATE r_muestras SET estado = 0 WHERE dispositivo='puerta'"
-            mycursor.execute(sql2)
-            mydb.commit()
-            print(mycursor.rowcount, "record affected.")
-            time.sleep(1)
-            #END of mysql
-        elif estado == 1:
-            print("<p>close the laboratory door<p>")
-            #os.system('gpio -g mode 26 out')
-            #time.sleep(10)
-            #os.system('gpio -g mode 26 in')
-        break
+        try:
+            #Connection to database LMV and update record in e_extraccion table with mysql
+            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+            mycursor = mydb.cursor()
+            sql = "SELECT estado FROM e_extraccion WHERE dispositivo='puerta'"
+            mycursor.execute(sql)
+            records = mycursor.fetchall()
+            print(mycursor.rowcount, "record selected.")
+            for row in records:
+                estado = int(row[0])
+            if estado == 0:
+                #os.system('gpio -g mode 22 out')
+                GPIO.output(22, True)
+                time.sleep(4)
+                sql2 = "UPDATE r_muestras SET estado = 1 WHERE dispositivo='puerta'"
+                mycursor.execute(sql2)
+                mydb.commit()
+                print(mycursor.rowcount, "record affected.")
+                GPIO.output(22, False)
+                sql2 = "UPDATE r_muestras SET estado = 0 WHERE dispositivo='puerta'"
+                mycursor.execute(sql2)
+                mydb.commit()
+                print(mycursor.rowcount, "record affected.")
+                time.sleep(1)
+                #END of mysql
+            elif estado == 1:
+                print("<p>close the laboratory door<p>")
+                #os.system('gpio -g mode 26 out')
+                #time.sleep(10)
+                #os.system('gpio -g mode 26 in')
+            break
+        except mysql.connector.Error as err:
+            print("Something went wrong: {}".format(err))

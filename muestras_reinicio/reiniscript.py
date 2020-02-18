@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 #Active GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(26, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
 
 print( "mensaje inicial antes de la espera")
 #time.sleep(20) # espera en segundos
@@ -40,21 +40,24 @@ def net_is_up():
 
 while True:
     if(net_is_up() == 0):
-        mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
-        mycursor = mydb.cursor()
-        sql = "SELECT estado FROM r_muestras WHERE dispositivo = 'luz'"
-        mycursor.execute(sql)
-        records = mycursor.fetchall()
-        print(mycursor.rowcount, "record selected")
-        for row in records:
-            estado = int(row[0])
+        try:
+            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+            mycursor = mydb.cursor()
+            sql = "SELECT estado FROM r_muestras WHERE dispositivo = 'luz'"
+            mycursor.execute(sql)
+            records = mycursor.fetchall()
+            print(mycursor.rowcount, "record selected")
+            for row in records:
+                estado = int(row[0])
         
-        print(estado)
-        if estado == 1:
-            GPIO.output(26, False)
-            print("Se prendio")
-            #os.system('gpio -g mode 18 out')
-        elif estado == 0:
-            GPIO.output(26, True)
-            #os.system('gpio -g mode 18 in')
-        break
+            print(estado)
+            if estado == 1:
+                GPIO.output(19, False)
+                print("Se prendio")
+                #os.system('gpio -g mode 18 out')
+            elif estado == 0:
+                GPIO.output(19, True)
+                #os.system('gpio -g mode 18 in')
+            break
+        except mysql.connector.Error as err:
+            print("Somenthing went wrong: {}".format(err))

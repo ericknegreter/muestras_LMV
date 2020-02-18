@@ -116,4 +116,6 @@ if __name__ == '__main__':
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
+    except mysql.connector.Error as er:
+        print("Something went wrong: {}".formart(err))
         #GPIO.cleanup()
