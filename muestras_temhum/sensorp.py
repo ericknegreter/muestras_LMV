@@ -35,20 +35,6 @@ def net_is_up():
     return xstatus
 
 while True:
-<<<<<<< HEAD
-    # Use read_retry method. This will retry up to 15 times to
-    # get a sensor reading (waiting 2 seconds between each retry).
-    humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
-    # Reading the DHT11 is very sensitive to timings and occasionally
-    # the Pi might fail to get a valid reading. So check if readings are valid.
-    if humidity is not None and temperature is not None:
-        #Time taken to restart networking
-        time.sleep(20)
-        #End the time sleep
-        while True:
-            if(net_is_up() == 0):
-                try:
-=======
     try:
         # Use read_retry method. This will retry up to 15 times to
         # get a sensor reading (waiting 2 seconds between each retry).
@@ -61,7 +47,6 @@ while True:
             #End the time sleep
             while True:
                 if(net_is_up() == 0):
->>>>>>> d94b85a794d66161686d751aa7aeaa840b413fc3
                     #Connection to database LMV and insert on temperature and humidity table new field with mysql
                     #temperature
                     mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
@@ -80,14 +65,7 @@ while True:
                     #END of mysql
                     print('Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity))
                     break
-<<<<<<< HEAD
-                except  mysql.connector.Error as err:
-                    print("Something went wrong: {}".format(err))
-        break    
-    else:
-        print('Failed to get reading. Try again!')
-=======
-            break    
+            break
         else:
             print('Failed to get reading. Try again!')
     except ValueError:
@@ -96,4 +74,3 @@ while True:
         print("OS error: {0}".format(err))
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
->>>>>>> d94b85a794d66161686d751aa7aeaa840b413fc3
