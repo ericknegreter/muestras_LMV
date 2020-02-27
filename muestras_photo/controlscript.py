@@ -73,7 +73,7 @@ def store(path, name, person, nameservidor):
     while True:
         if(net_is_up() == 0):
             #Connection and insert with mysql complete
-            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="MINIMOT4", database="LMV")
             mycursor = mydb.cursor()
             sql = "INSERT INTO imagespath (path, name, person) VALUES (%s, %s, %s)"
             val = (path, name, person)

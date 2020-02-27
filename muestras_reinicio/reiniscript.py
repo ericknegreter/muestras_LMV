@@ -41,7 +41,7 @@ def net_is_up():
 while True:
     if(net_is_up() == 0):
         try:
-            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="MINIMOT4", database="LMV")
             mycursor = mydb.cursor()
             sql = "SELECT estado FROM r_muestras WHERE dispositivo = 'luz'"
             mycursor.execute(sql)

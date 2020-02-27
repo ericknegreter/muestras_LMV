@@ -49,7 +49,7 @@ while True:
                 if(net_is_up() == 0):
                     #Connection to database LMV and insert on temperature and humidity table new field with mysql
                     #temperature
-                    mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+                    mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="MINIMOT4", database="LMV")
                     mycursor = mydb.cursor()
                     sql = "INSERT INTO temperature (tmp, area) VALUES (%s, %s)"
                     val = (temperature, 'muestras')

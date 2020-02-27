@@ -81,7 +81,7 @@ if __name__ == '__main__':
                         if(net_is_up() == 0):
                             #Connection to database LMV and insert on registro table new field with mysql
                             #registro
-                            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+                            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="MINIMOT4", database="LMV")
                             mycursor = mydb.cursor()
                             sql = "UPDATE r_muestras SET estado = 0 WHERE dispositivo='transfer'"
                             mycursor.execute(sql)
@@ -99,7 +99,7 @@ if __name__ == '__main__':
                         if(net_is_up() == 0):
                             #Connection to database LMV and insert on registro table new field with sql
                             #registro
-                            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+                            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="MINIMOT4", database="LMV")
                             mycursor = mydb.cursor()
                             sql = "UPDATE r_muestras SET estado = 1 WHERE dispositivo='transfer'"
                             mycursor.execute(sql)

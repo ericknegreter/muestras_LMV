@@ -39,7 +39,7 @@ while True:
     if(net_is_up() == 0):
         try:
             #Connection to database LMV and update record in e_extraccion table with mysql
-            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="LABORATORIOT4", database="LMV")
+            mydb = mysql.connector.connect(host="10.0.5.246", user="LMV_ADMIN", passwd="MINIMOT4", database="LMV")
             mycursor = mydb.cursor()
             sql = "SELECT estado FROM e_extraccion WHERE dispositivo='puerta'"
             mycursor.execute(sql)
