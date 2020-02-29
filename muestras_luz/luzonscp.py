@@ -1,4 +1,5 @@
 import mysql.connector
+from mysql.connector import Error
 import time
 import subprocess, datetime
 import RPi.GPIO as GPIO

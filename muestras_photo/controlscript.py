@@ -12,6 +12,7 @@ import subprocess
 
 #Store Image
 import mysql.connector
+from mysql.connector import Error
 
 #Turn on/off LEDS
 import RPi.GPIO as GPIO

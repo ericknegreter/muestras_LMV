@@ -2,6 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 import mysql.connector
+from mysql.connector import Error
 import os 
 import subprocess, datetime
 

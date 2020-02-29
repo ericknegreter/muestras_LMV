@@ -1,5 +1,6 @@
 import Adafruit_DHT
 import mysql.connector
+from mysql.connector import Error
 import time
 import subprocess, datetime
 
