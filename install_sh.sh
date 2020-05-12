@@ -26,21 +26,27 @@ sudo -H pip3 install cryptography
 sudo -H pip3 install mysql-connector-python
 sudo -H pip3 install pyaudio
 echo "Instalacion de scripts"
-echo '#!/usr/bin/python3.5
+echo '#!/usr/bin/python3.7
 import time
 import sys
 import mysql.connector
 from datetime import date, datetime
-peticion=sys.argv[1]
-cnx = mysql.connector.connect(user="LMV_ADMIN", password="LABORATORIOT4", host="10.0.5.246", database='LMV')
-cursor = cnx.cursor(buffered=True)
-today = datetime.now()
-print(today)
-print("Codigo Escaneado:"+peticion)
-add_proceso = ("INSERT INTO t_modulo4 (codigo_barras, fecha) VALUES ("+peticion+",'"+str(today)+"')")
-data_proceso = {"codigo_barras":peticion, "fecha":str(today)}
-cursor.execute(add_proceso,)
-cnx.commit()' > m.py
+import Adafruit_DHT
+
+sensor=Adafruit_DHT.DHT11
+gpio=13
+humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
+peticion1=sys.argv[1]
+cnx1 = mysql.connector.connect(user="LMV_ADMIN", password="MINIMOT4", host="10.0.5.246", database="LMV")
+cursor1 = cnx1.cursor()
+today1 = datetime.now()
+print("Codigo Escaneado:"+peticion1)
+add_proceso1 = ("INSERT INTO t_modulo1 (codigo_barras, fecha, tmp, hum) VALUES (%(codigo_barras)s, %(fecha)s, %(tmp)s, %(hum)s)")
+data_proceso1 = {"codigo_barras":peticion1, "fecha":today1, "tmp":temperature, "hum":humidity}
+cursor1.execute(add_proceso1, data_proceso1)
+cnx1.commit()
+cursor1.close()
+print("Conexion cerrada")' > m.py
 chmod +x m.py
 echo "Copia del script  bin"
 cp m.py /bin/
