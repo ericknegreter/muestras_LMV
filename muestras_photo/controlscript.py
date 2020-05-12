@@ -132,12 +132,12 @@ def security_name(name, spc):
     return False, "Usuario o contraseña incorrectos"
 
 def take_photo(name, id_):
-    validacion, comprobacion = security_name(name, id_):
+    validacion, comprobacion = security_name(name, id_)
     if validacion:
         script_dir = os.path.dirname(__file__)
         direc = os.path.dirname(os.path.abspath(__file__))
         os.system('./webcam.sh')
-        currentdate = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        currentdate = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
         real_path = currentdate +".jpg"
         abs_file_path = os.path.join(script_dir, real_path)
         GPIO.output(21, False)
